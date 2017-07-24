@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/cassinius/iml-anonymization-data#readme",
   "dependencies": {
-    "anonymizationjs": "^0.1.5",
+    "anonymizationjs": "^0.1.6",
     "encoding": "^0.1.12",
     "node-fetch": "^2.0.0-alpha.6"
   }
