@@ -62,7 +62,7 @@ function anonymizeData(json) {
         san.anonymizeGraph();
 
         // determine filename & write anonymized output file as CSV
-        let filename = `../outputs/${res_idx}_${res.grouptoken}_${res.usertoken}_${target}_${k_factor}.csv`;
+        let filename = `../outputs/${res_idx}_${res.grouptoken}_${res.usertoken}_${target}_${weight_cat.split('_')[1]}_${k_factor}.csv`;
         let csv_string = san.constructAnonymizedCSV();
         fs.writeFileSync(filename, csv_string);
       });
