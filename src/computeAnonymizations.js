@@ -5,13 +5,13 @@ const $FW = require('./fetchWeights');
 // console.log($A);
 
 let TARGETS = ["income", "marital-status", "education-num"];
-// let Ks = [5, 10, 20, 50, 100, 200];
-let Ks = [5]; // test
-let DRAWS = 300;
+let Ks = [5, 10, 20, 50, 100, 200];
+// let Ks = [5]; // test
+let DRAWS = 3000;
 let weight_category = ["weights_bias", "weights_iml"];
 
 let csvIN = new $A.IO.CSVIN($A.config.adults),
-    adults_original_file = "../inputs/original_data_500_rows.csv",
+    adults_original_file = "../inputs/original_data_5000_rows.csv",
     adults_original_csv = csvIN.readCSVFromFile(adults_original_file, true);
 
 // console.log(adults_original_csv);
@@ -59,6 +59,12 @@ function anonymizeData(json) {
         adults_original_csv = csvIN.readCSVFromFile(adults_original_file, true);
         san.instantiateGraph(adults_original_csv, false);
         // console.log(san._graph.getStats());
+        san.anonymizeGraph();
+
+        // determine filename & write anonymized output file as CSV
+        let filename = `../outputs/${res_idx}_${res.grouptoken}_${res.usertoken}_${target}_${k_factor}.csv`;
+        let csv_string = san.constructAnonymizedCSV();
+        fs.writeFileSync(filename, csv_string);
       });
     });
   });
